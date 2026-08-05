@@ -25,6 +25,7 @@
 - language
 - series_id (FK → Series, nullable)
 - volume_number (nullable)
+- publisher
 
 ## BookAuthors
 

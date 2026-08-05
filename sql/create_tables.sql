@@ -21,6 +21,7 @@ CREATE TABLE books (
     language TEXT NOT NULL,
     series_id INTEGER,
     volume_number INTEGER,
+    publisher TEXT,
     FOREIGN KEY (series_id) REFERENCES series(series_id)
 );
 

@@ -1,4 +1,4 @@
-from database import get_connection
+from src.database import get_connection
 
 
 
@@ -19,6 +19,30 @@ def add_book(title, language, series_id=None, volume_number=None):
     connection.close()
 
     return book_id
+
+
+def find_book_by_title(title):
+    connection = get_connection()
+    cursor = connection.cursor()
+
+    cursor.execute(
+        """
+        SELECT book_id
+        FROM books
+        WHERE title = ?
+        """,
+        (title,)
+    )
+
+    book = cursor.fetchone()
+
+    connection.close()
+
+    if book is None:
+        return None
+
+    return book[0]
+
 
 if __name__ == "__main__":
     book_id = add_book(

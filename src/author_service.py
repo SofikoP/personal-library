@@ -1,4 +1,4 @@
-"""from database import get_connection
+from src.database import get_connection
 
 
 def add_author(country):
@@ -15,7 +15,3 @@ def add_author(country):
     connection.close()
 
     return author_id
-
-if __name__ == "__main__":
-    author_id = add_author("UK")
-    print(f"Author added with ID: {author_id}")"""
