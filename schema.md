@@ -9,7 +9,6 @@
 
 - author_name_id (PK)
 - author_id (FK → Authors)
-- language
 - name
 
 ## Series

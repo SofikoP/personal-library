@@ -36,10 +36,9 @@ CREATE TABLE book_authors (
 CREATE TABLE author_names (
     author_name_id INTEGER PRIMARY KEY,
     author_id INTEGER NOT NULL,
-    language TEXT NOT NULL,
     name TEXT NOT NULL,
     FOREIGN KEY (author_id) REFERENCES authors(author_id),
-    UNIQUE (author_id, language)
+    UNIQUE (author_id, name)
 );
 
 CREATE TABLE user_books (
