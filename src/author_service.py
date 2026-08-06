@@ -1,17 +1,27 @@
 from src.database import get_connection
 
 
-def add_author(country):
-    connection = get_connection()
-    cursor = connection.cursor()
-    cursor.execute(
-        "INSERT INTO authors (country) VALUES (?)",
-        (country,)
-    )
+def create_author( country, language, name):
+        connection = get_connection()
+        cursor = connection.cursor()
 
-    author_id = cursor.lastrowid
+        insert_author = """
+        INSERT INTO authors (country)
+        VALUES (?)
+        """
 
-    connection.commit()
-    connection.close()
+        cursor.execute(insert_author, (country,))
 
-    return author_id
+        author_id = cursor.lastrowid
+
+        insert_author_name = """
+        INSERT INTO author_names (author_id, language, name)
+        VALUES (?, ?, ?)
+        """
+
+        cursor.execute(insert_author_name, (author_id, language, name))
+
+        connection.commit()
+        connection.close()
+
+        return author_id
