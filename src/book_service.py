@@ -54,12 +54,3 @@ def link_book_author(book_id, author_id):
 
     connection.commit()
     connection.close()
-
-
-if __name__ == "__main__":
-    book_id = add_book(
-        title="Harry Potter and the Philosopher's Stone",
-        language="en"
-    )
-
-    print(book_id)

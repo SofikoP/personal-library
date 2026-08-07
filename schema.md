@@ -15,7 +15,6 @@
 
 - series_id (PK)
 - series_name
-- author_id (FK → Authors)
 
 ## Books
 

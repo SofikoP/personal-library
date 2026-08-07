@@ -10,9 +10,7 @@ CREATE TABLE users (
 
 CREATE TABLE series (
     series_id INTEGER PRIMARY KEY,
-    series_name TEXT NOT NULL,
-    author_id INTEGER,
-    FOREIGN KEY (author_id) REFERENCES authors(author_id)
+    series_name TEXT NOT NULL UNIQUE
 );
 
 CREATE TABLE books (
