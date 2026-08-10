@@ -6,6 +6,8 @@ A personal library management application written in Python using SQLite.
 
 The goal is to build an application for managing my personal book collection rather than a reading tracker.
 
+The catalog is based on physical editions rather than bibliographic records. Book information reflects the specific editions in my collection, including their titles, publishers and languages.
+
 The application will allow me to:
 
 - store information about books;

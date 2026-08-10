@@ -5,57 +5,89 @@ books = [
     {
         "title": "Тревожные люди",
         "language": "ru",
-        "author_name": "Фредерик Бакман",
-        "author_country": "Sweden",
+        "authors": [
+            {
+            "name": "Фредерик Бакман",
+            "country": "Sweden"
+            }
+        ],
         "publisher": "Синдбад",
     },
     {
         "title": "My Friends",
         "language": "en",
-        "author_name": "Fredrik Backman",
-        "author_country": "Sweden",
+        "authors": [
+            {
+            "name": "Fredrik Backman",
+            "country": "Sweden"
+            }
+        ],
         "publisher": "Simon & Schuster",
     },
     {
         "title": "Marťan",
         "language": "cs",
-        "author_name": "Andy Weir",
-        "author_country": "United States",
+        "authors": [
+            {
+            "name": "Andy Weir",
+            "country": "United States"
+            }
+        ],
         "publisher": "Laser",
     },
     {
         "title": "Элантрис",
         "language": "ru",
-        "author_name": "Брендон Сандерсон",
-        "author_country": "United States",
+        "authors": [
+            {
+            "name": "Брендон Сандерсон",
+            "country": "United States"
+            }
+        ],
         "publisher": "Азбука",
     },
     {
         "title": "Локон с изумрудного моря",
         "language": "ru",
-        "author_name": "Брендон Сандерсон",
-        "author_country": "United States",
+        "authors": [
+            {
+            "name": "Брендон Сандерсон",
+            "country": "United States"
+            }
+        ],
         "publisher": "Азбука",
     },
     {
         "title": "Озаренный Солнцем",
         "language": "ru",
-        "author_name": "Брендон Сандерсон",
-        "author_country": "United States",
+        "authors": [
+            {
+            "name": "Брендон Сандерсон",
+            "country": "United States"
+            }
+        ],
         "publisher": "Азбука",
     },
     {
         "title": "Юми и укротитель кошмаров",
         "language": "ru",
-        "author_name": "Брендон Сандерсон",
-        "author_country": "United States",
+        "authors": [
+            {
+            "name": "Брендон Сандерсон",
+            "country": "United States"
+            }
+        ],
         "publisher": "Азбука",
     },
     {
         "title": "Ученик убийцы. Королевский убийца",
         "language": "ru",
-        "author_name": "Робин Хобб",
-        "author_country": "United States",
+        "authors": [
+            {
+            "name": "Робин Хобб",
+            "country": "United States"
+            }
+        ],
         "publisher": "Азбука",
         "series_name": "Сага о Видящих",
         "volume_number": 1
@@ -63,8 +95,12 @@ books = [
     {
         "title": "Странствия убийцы",
         "language": "ru",
-        "author_name": "Робин Хобб",
-        "author_country": "United States",
+        "authors": [
+            {
+            "name": "Робин Хобб",
+            "country": "United States"
+            }
+        ],
         "publisher": "Азбука",
         "series_name": "Сага о Видящих",
         "volume_number": 2
@@ -72,50 +108,78 @@ books = [
     {
         "title": "The Wilful Princess and the Piebald Prince",
         "language": "en",
-        "author_name": "Robin Hobb",
-        "author_country": "United States",
+        "authors": [
+            {
+            "name": "Robin Hobb",
+            "country": "United States"
+            }
+        ],
         "publisher": "HarperCollins"
     },
     {
         "title": "Тайная история",
         "language": "ru",
-        "author_name": "Донна Тартт",
-        "author_country": "United States",
-        "publisher": "Corpus",
+        "authors": [
+            {
+            "name": "Донна Тартт",
+            "country": "United States"
+            }
+        ],
+        "publisher": "Corpus"
     },
     {
         "title": "Alias Grace",
         "language": "cs",
-        "author_name": "Margaret Atwood",
-        "author_country": "Canada",
-        "publisher": "Argo",
+        "authors": [
+            {
+            "name": "Margaret Atwood",
+            "country": "Canada"
+            }
+        ],
+        "publisher": "Argo"
     },
     {
         "title": "Příběh služebnice",
         "language": "cs",
-        "author_name": "Margaret Atwood",
-        "author_country": "Canada",
-        "publisher": "Argo",
+        "authors": [
+            {
+            "name": "Margaret Atwood",
+            "country": "Canada"
+            }
+        ],
+        "publisher": "Argo"
     },
     {
         "title": "Svědectví",
         "language": "cs",
-        "author_name": "Margaret Atwood",
-        "author_country": "Canada",
-        "publisher": "Argo",
+        "authors": [
+            {
+            "name": "Margaret Atwood",
+            "country": "Canada"
+            }
+        ],
+        "publisher": "Argo"
     },
     {
         "title": "Замок Броуди",
         "language": "ru",
-        "author_name": "Арчибальд Кронин",
-        "author_country": "Scotland",
-        "publisher": "Иностранка",
+        "authors": [
+            {
+            "name": "Арчибальд Кронин",
+            "country": "Scotland"
+            }
+        ],
+        "publisher": "Иностранка"
     },
     {
         "title": "Пробуждение Левиафана",
         "language": "ru",
-        "author_name": "Джеймс Кори",
-        "author_country": "United States",
+        "authors": [
+            {
+            "name": "Джеймс Кори",
+            "country": "United States"
+            }
+        ],
         "publisher": "Азбука",
         "series_name": "Пространство",
         "volume_number": 1
@@ -123,8 +187,12 @@ books = [
     {
         "title": "Война Калибана",
         "language": "ru",
-        "author_name": "Джеймс Кори",
-        "author_country": "United States",
+        "authors": [
+            {
+            "name": "Джеймс Кори",
+            "country": "United States"
+            }
+        ],
         "publisher": "Азбука",
         "series_name": "Пространство",
         "volume_number": 2
@@ -132,13 +200,98 @@ books = [
     {
         "title": "Врата Абаддона",
         "language": "ru",
-        "author_name": "Джеймс Кори",
-        "author_country": "United States",
+        "authors": [
+            {
+            "name": "Джеймс Кори",
+            "country": "United States"
+            }
+        ],
         "publisher": "Азбука",
         "series_name": "Пространство",
         "volume_number": 3
     },
-
+    {
+        "title": "The Hunger Games",
+        "language": "en",
+        "authors": [
+            {
+            "name": "Suzanne Collins",
+            "country": "United States"
+            }
+        ],
+        "publisher": "Scholastic",
+        "series_name": "The Hunger Games",
+        "volume_number": 1
+    },
+    {
+        "title": "Catching Fire",
+        "language": "en",
+        "authors": [
+            {
+            "name": "Suzanne Collins",
+            "country": "United States"
+            }
+        ],
+        "publisher": "Scholastic",
+        "series_name": "The Hunger Games",
+        "volume_number": 2
+    },
+    {
+        "title": "Mockingjay",
+        "language": "en",
+        "authors": [
+            {
+            "name": "Suzanne Collins",
+            "country": "United States"
+            }
+        ],
+        "publisher": "Scholastic",
+        "series_name": "The Hunger Games",
+        "volume_number": 3
+    },
+    {
+        "title": "The Ballad of Songbirds and Snakes",
+        "language": "en",
+        "authors": [
+            {
+            "name": "Suzanne Collins",
+            "country": "United States"
+            }
+        ],
+        "publisher": "Scholastic",
+        "series_name": "The Hunger Games",
+        "volume_number": None
+    },
+    {
+        "title": "Град обреченный",
+        "language": "ru",
+        "authors": [
+            {
+            "name": "Аркадий Стругацкий",
+            "country": "Russia"
+            },
+            {
+            "name": "Борис Стругацкий",
+            "country": "Russia"
+            }
+        ],
+        "publisher": "АСТ"
+    },
+    {
+        "title": "Пикник на обочине",
+        "language": "ru",
+        "authors": [
+            {
+            "name": "Аркадий Стругацкий",
+            "country": "Russia"
+            },
+            {
+            "name": "Борис Стругацкий",
+            "country": "Russia"
+            }
+        ],
+        "publisher": "АСТ"
+    }
 ]
 
 for book in books:
