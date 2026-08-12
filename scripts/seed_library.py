@@ -1,4 +1,4 @@
-from src.library_service import add_new_book
+from src.library_service import add_new_book, create_genre
 
 
 books = [
@@ -33,6 +33,7 @@ books = [
             "country": "United States"
             }
         ],
+        "genres": ["Science Fiction"],
         "publisher": "Laser",
     },
     {
@@ -44,6 +45,7 @@ books = [
             "country": "United States"
             }
         ],
+        "genres": ["Fantasy"],
         "publisher": "Азбука",
     },
     {
@@ -88,6 +90,7 @@ books = [
             "country": "United States"
             }
         ],
+        "genres": ["Fantasy"],
         "publisher": "Азбука",
         "series_name": "Сага о Видящих",
         "volume_number": 1
@@ -101,6 +104,7 @@ books = [
             "country": "United States"
             }
         ],
+        "genres": ["Fantasy"],
         "publisher": "Азбука",
         "series_name": "Сага о Видящих",
         "volume_number": 2
@@ -125,6 +129,7 @@ books = [
             "country": "United States"
             }
         ],
+        "genres": ["Modern Prose", "Literary Fiction"],
         "publisher": "Corpus"
     },
     {
@@ -136,6 +141,7 @@ books = [
             "country": "Canada"
             }
         ],
+        "genres": ["Historical Fiction", "Literary Fiction"],
         "publisher": "Argo"
     },
     {
@@ -169,6 +175,7 @@ books = [
             "country": "Scotland"
             }
         ],
+        "genres": ["Classic Literature"],
         "publisher": "Иностранка"
     },
     {
@@ -180,6 +187,7 @@ books = [
             "country": "United States"
             }
         ],
+        "genres": ["Science Fiction"],
         "publisher": "Азбука",
         "series_name": "Пространство",
         "volume_number": 1
@@ -193,6 +201,7 @@ books = [
             "country": "United States"
             }
         ],
+        "genres": ["Science Fiction"],
         "publisher": "Азбука",
         "series_name": "Пространство",
         "volume_number": 2
@@ -206,6 +215,7 @@ books = [
             "country": "United States"
             }
         ],
+        "genres": ["Science Fiction"],
         "publisher": "Азбука",
         "series_name": "Пространство",
         "volume_number": 3
@@ -275,6 +285,7 @@ books = [
             "country": "Russia"
             }
         ],
+        "genres": ["Science Fiction", "Dystopian Fiction"],
         "publisher": "АСТ"
     },
     {
@@ -291,8 +302,35 @@ books = [
             }
         ],
         "publisher": "АСТ"
+    },
+    {
+    "title": "Všechny jeho lži",
+    "language": "cs",
+    "authors": [
+        {"name": "James Patterson", "country": "United States"}
+    ],
+    "genres": ["Thriller"],
+    "publisher": "Alpress"
     }
 ]
+
+genres = [
+    "Classic Literature",
+    "Dystopian Fiction",
+    "Fantasy",
+    "Historical Fiction",
+    "Literary Fiction",
+    "Modern Prose",
+    "Mystery",
+    "Romance",
+    "Science Fiction",
+    "Thriller",
+    "Young Adult"
+]
+
+
+for genre in genres:
+    create_genre(genre)
 
 for book in books:
     add_new_book(**book)

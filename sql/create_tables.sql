@@ -47,3 +47,16 @@ CREATE TABLE user_books (
     FOREIGN KEY (user_id) REFERENCES users(user_id),
     FOREIGN KEY (book_id) REFERENCES books(book_id)
 );
+
+CREATE TABLE genres (
+    genre_id INTEGER PRIMARY KEY,
+    genre_name TEXT NOT NULL UNIQUE
+);
+
+CREATE TABLE book_genres (
+    book_id INTEGER NOT NULL,
+    genre_id INTEGER NOT NULL,
+    PRIMARY KEY (book_id, genre_id),
+    FOREIGN KEY (book_id) REFERENCES books(book_id),
+    FOREIGN KEY (genre_id) REFERENCES genres(genre_id)
+);

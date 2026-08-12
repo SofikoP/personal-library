@@ -1,9 +1,11 @@
 from src.book_service import add_book, find_book_by_title, link_book_author
 from src.author_service import create_author, find_author_by_name
 from src.series_service import create_series, find_series_by_name
+from src.genre_service import create_genre, find_genre_by_name, link_book_genre
 
 
-def add_new_book(title, language, authors, publisher=None, series_name=None, volume_number=None,):
+
+def add_new_book(title, language, authors, genres=None, publisher=None, series_name=None, volume_number=None):
     existing_book_id = find_book_by_title(title)
 
     if existing_book_id is not None:
@@ -26,5 +28,14 @@ def add_new_book(title, language, authors, publisher=None, series_name=None, vol
             author_id = create_author(author["country"], author["name"])
 
         link_book_author(book_id, author_id)
+
+    if genres is not None:
+        for genre in genres:
+            genre_id = find_genre_by_name(genre)
+
+            if genre_id is None:
+                genre_id = create_genre(genre)
+
+            link_book_genre(book_id, genre_id)
 
     return book_id

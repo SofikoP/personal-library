@@ -45,6 +45,17 @@ PRIMARY KEY (book_id, author_id)
 
 PRIMARY KEY (user_id, book_id)
 
+## Genres
+- genre_id (PK)
+- genre_name
+
+## BookGenres
+
+- book_id 
+- genre_id
+
+PRIMARY KEY (book_id, genre_id)
+
 ## Design Principles
 
 - The `books` table stores physical book copies rather than literary works.
