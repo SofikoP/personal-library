@@ -38,6 +38,7 @@ Users interact only with books. Related entities such as authors, publishers and
 - Genres
 - Book status (read / unread / reading)
 - User interface
+- Support alternative author names
 
 ## Search improvements
 

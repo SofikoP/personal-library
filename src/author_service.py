@@ -48,3 +48,18 @@ def find_author_by_name(name):
         return None
 
     return author[0]
+
+
+def add_author_name(author_id, name):
+    connection = get_connection()
+    cursor = connection.cursor()
+
+    insert_author_name = """
+            INSERT OR IGNORE INTO author_names (author_id, name)
+            VALUES (?, ?)
+            """
+
+    cursor.execute(insert_author_name, (author_id, name))
+
+    connection.commit()
+    connection.close()
