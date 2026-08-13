@@ -1,4 +1,4 @@
-from src.book_service import add_book, find_book_by_title, link_book_author
+from src.book_service import add_book, link_book_author, find_existing_book
 from src.author_service import create_author, find_author_by_name
 from src.series_service import create_series, find_series_by_name
 from src.genre_service import create_genre, find_genre_by_name, link_book_genre
@@ -6,7 +6,7 @@ from src.genre_service import create_genre, find_genre_by_name, link_book_genre
 
 
 def add_new_book(title, language, authors, genres=None, publisher=None, series_name=None, volume_number=None):
-    existing_book_id = find_book_by_title(title)
+    existing_book_id = find_existing_book(title, authors, publisher)
 
     if existing_book_id is not None:
         raise ValueError("Book already exists.")
