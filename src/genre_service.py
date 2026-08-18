@@ -54,3 +54,22 @@ def find_genre_by_name(name):
         return None
 
     return genre[0]
+
+
+def get_all_genres():
+    connection = get_connection()
+    cursor = connection.cursor()
+
+    cursor.execute(
+        """
+        SELECT genre_name
+        FROM genres
+        ORDER BY genre_name
+        """
+    )
+
+    genres = cursor.fetchall()
+
+    connection.close()
+
+    return [genre[0] for genre in genres]

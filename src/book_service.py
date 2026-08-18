@@ -155,7 +155,3 @@ def find_existing_book(title, authors, publisher):
         return book_id
 
     return None
-
-if __name__ == "__main__":
-    print(find_existing_book("My Friends", [{"name": "Fredrik Backman"}], "Simon & Schuster"))
-    print(get_book(2))

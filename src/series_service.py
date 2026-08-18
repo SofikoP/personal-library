@@ -41,3 +41,20 @@ def find_series_by_name(series_name):
         return None
 
     return series[0]
+
+
+def get_all_series():
+    connection = get_connection()
+    cursor = connection.cursor()
+
+    cursor.execute("""
+        SELECT series_name
+        FROM series
+        ORDER BY series_name
+    """)
+
+    series = cursor.fetchall()
+
+    connection.close()
+
+    return [row[0] for row in series]

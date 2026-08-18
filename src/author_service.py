@@ -63,3 +63,22 @@ def add_author_name(author_id, name):
 
     connection.commit()
     connection.close()
+
+
+def get_all_author_names():
+    connection = get_connection()
+    cursor = connection.cursor()
+
+    cursor.execute(
+        """
+        SELECT author_id, name
+        FROM author_names
+        ORDER BY name
+        """
+    )
+
+    authors = cursor.fetchall()
+
+    connection.close()
+
+    return authors
