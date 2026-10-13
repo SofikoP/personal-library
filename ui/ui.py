@@ -2,6 +2,8 @@ import tkinter as tk
 from tkinter import ttk, messagebox
 
 from src.library_service import add_new_book
+from src.book_service import delete_book
+from src.database import get_connection
 from src.genre_service import get_all_genres
 from src.author_service import get_all_author_names
 from src.series_service import get_all_series
@@ -803,6 +805,148 @@ add_book_button.grid(
     columnspan=3,
     pady=20
 )
+
+# -------------------------
+# Manage / delete books
+# -------------------------
+
+def open_manage_books():
+    manage_window = tk.Toplevel(window)
+    manage_window.title("Manage books")
+    manage_window.geometry("900x420")
+
+    tk.Label(
+        manage_window,
+        text="Select a book and click Delete selected book",
+        font=("Arial", 12)
+    ).pack(pady=10)
+
+    columns = ("book_id", "title", "authors", "series", "volume", "language", "publisher")
+    tree = ttk.Treeview(manage_window, columns=columns, show="headings", selectmode="browse")
+
+    headings = {
+        "book_id": "ID",
+        "title": "Title",
+        "authors": "Authors",
+        "series": "Series",
+        "volume": "Volume",
+        "language": "Language",
+        "publisher": "Publisher",
+    }
+    widths = {
+        "book_id": 45,
+        "title": 190,
+        "authors": 180,
+        "series": 130,
+        "volume": 65,
+        "language": 70,
+        "publisher": 130,
+    }
+    for column in columns:
+        tree.heading(column, text=headings[column])
+        tree.column(column, width=widths[column], anchor="w")
+
+    scrollbar = ttk.Scrollbar(manage_window, orient="vertical", command=tree.yview)
+    tree.configure(yscrollcommand=scrollbar.set)
+    tree.pack(side="left", fill="both", expand=True, padx=(10, 0), pady=5)
+    scrollbar.pack(side="left", fill="y", pady=5)
+
+    def refresh_books():
+        for item in tree.get_children():
+            tree.delete(item)
+
+        connection = get_connection()
+        try:
+            cursor = connection.cursor()
+            cursor.execute("""
+                SELECT
+                    b.book_id,
+                    b.title,
+                    GROUP_CONCAT(DISTINCT an.name) AS authors,
+                    s.series_name,
+                    b.volume_number,
+                    b.language,
+                    b.publisher
+                FROM books b
+                LEFT JOIN series s ON s.series_id = b.series_id
+                LEFT JOIN book_authors ba ON ba.book_id = b.book_id
+                LEFT JOIN author_names an ON an.author_id = ba.author_id
+                GROUP BY b.book_id
+                ORDER BY b.title COLLATE NOCASE
+            """)
+            rows = cursor.fetchall()
+            for row in rows:
+                tree.insert("", "end", values=tuple("" if value is None else value for value in row))
+        except Exception as error:
+            messagebox.showerror("Could not load books", str(error), parent=manage_window)
+        finally:
+            connection.close()
+
+    def delete_selected_book():
+        selection = tree.selection()
+        if not selection:
+            messagebox.showwarning(
+                "No book selected",
+                "Please select a book first.",
+                parent=manage_window
+            )
+            return
+
+        values = tree.item(selection[0], "values")
+        selected_book_id = int(values[0])
+        selected_title = values[1]
+
+        confirmed = messagebox.askyesno(
+            "Confirm deletion",
+            f"Delete '{selected_title}' (ID: {selected_book_id})?\nThis action cannot be undone.",
+            parent=manage_window
+        )
+        if not confirmed:
+            return
+
+        try:
+            delete_book(selected_book_id)
+        except Exception as error:
+            messagebox.showerror("Could not delete book", str(error), parent=manage_window)
+            return
+
+        messagebox.showinfo(
+            "Book deleted",
+            f"'{selected_title}' was deleted.",
+            parent=manage_window
+        )
+        refresh_books()
+
+    button_frame = tk.Frame(manage_window)
+    button_frame.pack(side="bottom", fill="x", pady=10)
+
+    tk.Button(
+        button_frame,
+        text="Delete selected book",
+        command=delete_selected_book
+    ).pack(side="left", padx=10)
+
+    tk.Button(
+        button_frame,
+        text="Refresh list",
+        command=refresh_books
+    ).pack(side="left", padx=5)
+
+    refresh_books()
+
+
+manage_books_button = tk.Button(
+    window,
+    text="Manage books / Delete book",
+    command=open_manage_books
+)
+manage_books_button.grid(
+    row=9,
+    column=0,
+    columnspan=3,
+    pady=(0, 15)
+)
+
 
 
 window.mainloop()

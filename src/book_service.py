@@ -155,3 +155,136 @@ def find_existing_book(title, authors, publisher):
         return book_id
 
     return None
+
+
+def delete_book(book_id):
+    connection = get_connection()
+    cursor = connection.cursor()
+
+    try:
+        book = get_book(book_id)
+
+        if book is None:
+            return None
+
+        cursor.execute(
+            """
+            SELECT author_id
+            FROM book_authors
+            WHERE book_id = ?
+            """,
+            (book_id,))
+
+        author_ids = [row[0] for row in cursor.fetchall()]
+
+        cursor.execute(
+            """
+            SELECT genre_id
+            FROM book_genres
+            WHERE book_id = ?
+            """,
+            (book_id,))
+
+        genre_ids = [row[0] for row in cursor.fetchall()]
+
+        cursor.execute(
+            """
+            SELECT
+            series_id
+            FROM
+            books
+            WHERE
+            book_id = ?
+            """,
+            (book_id,))
+
+        row = cursor.fetchone()
+        series_id = row[0]
+
+        cursor.execute(
+            """
+            DELETE FROM books 
+            WHERE book_id = ?
+            """,
+            (book_id,))
+
+
+        for author_id in author_ids:
+            cursor.execute(
+                """
+                SELECT
+                COUNT(*)
+                FROM
+                book_authors
+                WHERE
+                author_id = ?
+                """,
+                (author_id,))
+
+            row = cursor.fetchone()
+            book_count = row[0]
+
+            if book_count == 0:
+                cursor.execute(
+                    """
+                    DELETE FROM authors 
+                    WHERE author_id = ?
+                    """,
+                    (author_id,))
+
+        for genre_id in genre_ids:
+            cursor.execute(
+                """
+                SELECT
+                COUNT(*)
+                FROM
+                book_genres
+                WHERE
+                genre_id = ?
+                """,
+                (genre_id,))
+
+            row = cursor.fetchone()
+            book_count = row[0]
+
+            if book_count == 0:
+                cursor.execute(
+                    """
+                    DELETE FROM genres 
+                    WHERE genre_id = ?
+                    """,
+                    (genre_id,))
+
+        if series_id is not None:
+            cursor.execute(
+                """
+                SELECT
+                COUNT(*)
+                FROM
+                books
+                WHERE
+                series_id = ?
+                """,
+                (series_id,))
+
+            row = cursor.fetchone()
+            book_count = row[0]
+
+            if book_count == 0:
+                cursor.execute(
+                    """
+                    DELETE FROM series 
+                    WHERE series_id = ?
+                    """,
+                    (series_id,))
+
+        connection.commit()
+        return book
+
+    except Exception:
+        connection.rollback()
+        raise
+
+    finally:
+        connection.close()
+

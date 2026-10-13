@@ -2,4 +2,6 @@ import sqlite3
 
 
 def get_connection():
-    return sqlite3.connect("data/library.db")
+    connection = sqlite3.connect("data/library.db")
+    connection.execute("PRAGMA foreign_keys = ON")
+    return connection

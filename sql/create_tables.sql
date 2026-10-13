@@ -27,7 +27,8 @@ CREATE TABLE book_authors (
     book_id INTEGER NOT NULL,
     author_id INTEGER NOT NULL,
     PRIMARY KEY (book_id, author_id),
-    FOREIGN KEY (book_id) REFERENCES books(book_id),
+    FOREIGN KEY (book_id) REFERENCES books(book_id)
+    ON DELETE CASCADE,
     FOREIGN KEY (author_id) REFERENCES authors(author_id)
 );
 
@@ -35,7 +36,8 @@ CREATE TABLE author_names (
     author_name_id INTEGER PRIMARY KEY,
     author_id INTEGER NOT NULL,
     name TEXT NOT NULL,
-    FOREIGN KEY (author_id) REFERENCES authors(author_id),
+    FOREIGN KEY (author_id) REFERENCES authors(author_id)
+    ON DELETE CASCADE,
     UNIQUE (author_id, name)
 );
 
@@ -46,6 +48,7 @@ CREATE TABLE user_books (
     PRIMARY KEY (user_id, book_id),
     FOREIGN KEY (user_id) REFERENCES users(user_id),
     FOREIGN KEY (book_id) REFERENCES books(book_id)
+    ON DELETE CASCADE
 );
 
 CREATE TABLE genres (
@@ -57,6 +60,7 @@ CREATE TABLE book_genres (
     book_id INTEGER NOT NULL,
     genre_id INTEGER NOT NULL,
     PRIMARY KEY (book_id, genre_id),
-    FOREIGN KEY (book_id) REFERENCES books(book_id),
+    FOREIGN KEY (book_id) REFERENCES books(book_id)
+    ON DELETE CASCADE,
     FOREIGN KEY (genre_id) REFERENCES genres(genre_id)
 );

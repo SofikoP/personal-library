@@ -39,3 +39,6 @@ def add_new_book(title, language, authors, genres=None, publisher=None, series_n
             link_book_genre(book_id, genre_id)
 
     return book_id
+
+def delete_book(book_id):
+    pass
