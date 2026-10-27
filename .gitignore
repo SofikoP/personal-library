@@ -1,9 +1,24 @@
 # Python cache
 __pycache__/
 *.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
 
 # Virtual environment
 .venv/
+venv/
+env/
+
+# IDE settings
+.idea/
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
 
 # Local database
 data/library.db
+data/demo.db

@@ -1,11 +1,15 @@
-import sqlite3
+from pathlib import Path
+from src.database import get_connection, DB_PATH, SQL_PATH
 
 
-connection = sqlite3.connect("data/library.db")
+def initialize_database(path=DB_PATH):
+    Path(path).parent.mkdir(parents=True, exist_ok=True)
 
-with open("sql/create_tables.sql", "r", encoding="utf-8") as file:
-    sql_script = file.read()
+    connection = get_connection(path)
 
-connection.executescript(sql_script)
-connection.commit()
-connection.close()
+    with open(SQL_PATH, "r", encoding="utf-8") as file:
+        sql_script = file.read()
+
+    connection.executescript(sql_script)
+    connection.commit()
+    connection.close()

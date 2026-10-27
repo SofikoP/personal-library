@@ -10,12 +10,14 @@ CREATE TABLE users (
 
 CREATE TABLE series (
     series_id INTEGER PRIMARY KEY,
-    series_name TEXT NOT NULL UNIQUE
+    series_name TEXT NOT NULL UNIQUE,
+    series_name_normalized TEXT NOT NULL
 );
 
 CREATE TABLE books (
     book_id INTEGER PRIMARY KEY,
     title TEXT NOT NULL,
+    title_normalized TEXT NOT NULL,
     language TEXT NOT NULL,
     series_id INTEGER,
     volume_number INTEGER,
@@ -35,10 +37,12 @@ CREATE TABLE book_authors (
 CREATE TABLE author_names (
     author_name_id INTEGER PRIMARY KEY,
     author_id INTEGER NOT NULL,
+    language TEXT NOT NULL,
     name TEXT NOT NULL,
+    name_normalized TEXT NOT NULL,
     FOREIGN KEY (author_id) REFERENCES authors(author_id)
     ON DELETE CASCADE,
-    UNIQUE (author_id, name)
+    UNIQUE (author_id, language)
 );
 
 CREATE TABLE user_books (

@@ -1,12 +1,20 @@
-from src.book_service import add_book, find_book_by_title
+from src import book_service
 
 
-if __name__ == "__main__":
-    book_id = add_book(
-        title="Dune",
-        language="en"
-    )
+def test_add_book(connection):
+    book_id = book_service.add_book(connection, title="Dune", language="en")
 
-    assert find_book_by_title("Dune") == book_id
+    assert book_service.find_book_by_title(connection, "Dune") == book_id
 
-    print("Test passed")
+
+def test_delete_book(connection):
+    book_id = book_service.add_book(connection, title="The Hunger Games", language="en")
+
+    deleted_book = book_service.delete_book(connection, book_id)
+
+    assert deleted_book is not None
+    assert book_service.find_book_by_title(connection, "The Hunger Games") is None
+
+
+def test_delete_nonexistent_book(connection):
+    assert book_service.delete_book(connection, 100500) is None
