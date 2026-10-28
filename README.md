@@ -38,6 +38,16 @@ Start the app (opens a demo database `data/demo.db`, created on first run):
 python -m ui.ui
 ```
 
+To work with your own library, create a new database filled with the starting books and open it
+(the first command refuses to touch an existing `data/library.db`, move an old file away first):
+
+```
+python -m scripts.seed_library
+python -m ui.ui --real
+```
+
+The database file is not stored in Git, so back it up by copying `data/library.db`.
+
 Run the tests (they use temporary databases):
 
 ```

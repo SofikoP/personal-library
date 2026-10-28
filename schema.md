@@ -31,7 +31,7 @@ UNIQUE (author_id, language): an author has at most one name per language.
 - language (NOT NULL)
 - series_id (FK → Series, nullable)
 - volume_number (nullable)
-- publisher (nullable)
+- publisher (NOT NULL)
 
 ## BookAuthors
 

@@ -1,3 +1,6 @@
+from src.text_utils import normalize
+
+
 def create_genre(connection, genre_name):
     cursor = connection.cursor()
 
@@ -22,21 +25,21 @@ def link_book_genre(connection, book_id, genre_id):
     cursor.execute(query, (book_id, genre_id))
 
 
+def unlink_book_genres(connection, book_id):
+    connection.execute("DELETE FROM book_genres WHERE book_id = ?", (book_id,))
+
+
 def find_genre_by_name(connection, name):
     cursor = connection.cursor()
 
-    cursor.execute(
-        """
-        SELECT genre_id
-        FROM genres
-        WHERE genre_name = ?
-        """,
-        (name,)
-    )
+    # There are only a few genres, so compare them in Python (SQLite cannot ignore case in Cyrillic).
+    cursor.execute("SELECT genre_id, genre_name FROM genres")
 
-    genre = cursor.fetchone()
+    for genre_id, genre_name in cursor.fetchall():
+        if normalize(genre_name) == normalize(name):
+            return genre_id
 
-    return None if genre is None else genre[0]
+    return None
 
 
 def get_all_genres(connection):
